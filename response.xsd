@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:ewp="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
+    elementFormDefault="qualified"
+
+    targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-nominations-approval/tree/master"
+    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-ominations-approval/tree/master"
+>
+    <!-- WRTODO: Replace all occurrences of 'master' (in all projects) with 'stable-v1' upon release. -->
+
+    <xs:import
+        schemaLocation="https://raw.githubusercontent.com/erasmus-without-paper/ewp-specs-architecture/stable-v1/common-types.xsd"
+        namespace="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
+    />
+
+    <xs:annotation>
+        <xs:documentation>
+            This schema is a part of the Erasmus Without Paper project. Before you start
+            using it, make sure you have read the general rules described here:
+
+            http://developers.erasmuswithoutpaper.eu/
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="nominations-approval-response">
+        <xs:annotation>
+            <xs:documentation>
+                This describes the format of the response returned by the EWP Nominations
+                Approval API.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="mobility-statuses-saved" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Describes how the server dealt with the request. This information enables
+                            client developers to provide some feedback for their users.
+
+                            Client developers SHOULD also make use of the value of the `user-notes` element
+                            (see manifest-entry.xsd).
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="all">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Indicates that statuses of *all* referenced mobilities were immediately saved.
+                                        The request did not require approval by a human.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="none">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Indicates that no statuses were actually modified at this point. The request
+                                        was stored, but it requires to be reviewed by a human before statuses are
+                                        updated.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="some">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        Indicates that statuses of *some* referenced mobilities were saved immediately,
+                                        but some other statuses were not (because, for example, they require approval
+                                        by a human).
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
