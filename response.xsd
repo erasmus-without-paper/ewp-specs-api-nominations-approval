@@ -6,7 +6,7 @@
     elementFormDefault="qualified"
 
     targetNamespace="https://github.com/erasmus-without-paper/ewp-specs-api-nominations-approval/tree/master"
-    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-ominations-approval/tree/master"
+    xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-nominations-approval/tree/master"
 >
     <!-- WRTODO: Replace all occurrences of 'master' (in all projects) with 'stable-v1' upon release. -->
 
@@ -33,46 +33,25 @@
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="mobility-statuses-saved" minOccurs="1" maxOccurs="1">
+                <xs:element name="success-user-message" minOccurs="0" maxOccurs="unbounded" type="ewp:MultilineStringWithOptionalLang">
                     <xs:annotation>
                         <xs:documentation>
-                            Describes how the server dealt with the request. This information enables
-                            client developers to provide some feedback for their users.
+                            Optional message to be displayed for the human who had initiated the change. It
+                            is RECOMMENDED for the server to provide it at least in English.
 
-                            Client developers SHOULD also make use of the value of the `user-notes` element
-                            (see manifest-entry.xsd).
+                            Clients SHOULD display this message for their end users, if it is given, and if
+                            it is possible to display it. It's a HTTP 200 equivalent of HTTP 4xx
+                            `error-response/user-message` element.
+
+                            Different EWP servers may process requests sent to this API in very different
+                            ways. This element allows to developers to inform end users about these
+                            differences. Server implementers should briefly explain whether the request has
+                            been saved immediately (so that the corresponding Outgoing Mobility object got
+                            updated), or perhaps it was forwarded to an IRO staff member for manual
+                            processing, etc. This message is intended for end users, so it SHOULD NOT refer
+                            to technical terms (such as "Outgoing Mobility object").
                         </xs:documentation>
                     </xs:annotation>
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:enumeration value="all">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Indicates that statuses of *all* referenced mobilities were immediately saved.
-                                        The request did not require approval by a human.
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:enumeration>
-                            <xs:enumeration value="none">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Indicates that no statuses were actually modified at this point. The request
-                                        was stored, but it requires to be reviewed by a human before statuses are
-                                        updated.
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:enumeration>
-                            <xs:enumeration value="some">
-                                <xs:annotation>
-                                    <xs:documentation>
-                                        Indicates that statuses of *some* referenced mobilities were saved immediately,
-                                        but some other statuses were not (because, for example, they require approval
-                                        by a human).
-                                    </xs:documentation>
-                                </xs:annotation>
-                            </xs:enumeration>
-                        </xs:restriction>
-                    </xs:simpleType>
                 </xs:element>
             </xs:sequence>
         </xs:complexType>

@@ -44,25 +44,6 @@
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
-                        <xs:element name="user-notes" type="ewp:MultilineStringWithOptionalLang" minOccurs="0" maxOccurs="unbounded">
-                            <xs:annotation>
-                                <xs:documentation>
-                                    Different servers may process requests sent to this API in very different ways.
-                                    Users might want to know about these differences. Client implementers SHOULD
-                                    display the value of this element to their end users (IRO members who approve
-                                    nominations).
-
-                                    Server implementers are RECOMMENDED to supply user-notes at least in English,
-                                    and briefly explain topics like:
-
-                                    - Are the nomination statuses usually saved immediately, or do they need to
-                                      be reviewed first?
-
-                                    - Are there any additional requirements which the list of approved mobilities
-                                      must meet?
-                                </xs:documentation>
-                            </xs:annotation>
-                        </xs:element>
                     </xs:sequence>
                 </xs:extension>
             </xs:complexContent>
