@@ -33,16 +33,9 @@
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="success-user-message" minOccurs="0" maxOccurs="unbounded" type="ewp:MultilineStringWithOptionalLang">
+                <xs:element ref="ewp:success-user-message" minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
                         <xs:documentation>
-                            Optional message to be displayed for the human who had initiated the change. It
-                            is RECOMMENDED for the server to provide it at least in English.
-
-                            Clients SHOULD display this message for their end users, if it is given, and if
-                            it is possible to display it. It's a HTTP 200 equivalent of HTTP 4xx
-                            `error-response/user-message` element.
-
                             Different EWP servers may process requests sent to this API in very different
                             ways. This element allows to developers to inform end users about these
                             differences. Server implementers should briefly explain whether the request has

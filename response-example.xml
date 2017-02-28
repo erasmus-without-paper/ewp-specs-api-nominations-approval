@@ -1,13 +1,15 @@
 <nominations-approval-response
     xmlns="https://github.com/erasmus-without-paper/ewp-specs-api-nominations-approval/tree/master"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ewp="https://github.com/erasmus-without-paper/ewp-specs-architecture/blob/stable-v1/common-types.xsd"
     xsi:schemaLocation="
         https://github.com/erasmus-without-paper/ewp-specs-api-nominations-approval/tree/master
         response.xsd
     "
 >
     <!-- WRTODO: absolute paths! -->
-    <success-user-message>Thank you, University of Oslo has received your request and it has been queued for processing.
 
-In this system, nomination statuses are NOT saved immediately. They need to be reviewed first.</success-user-message>
+    <ewp:success-user-message>Thank you, University of Oslo has received your request and it has been queued for processing.
+
+In this system, nomination statuses are NOT saved immediately. They need to be reviewed first.</ewp:success-user-message>
 </nominations-approval-response>
